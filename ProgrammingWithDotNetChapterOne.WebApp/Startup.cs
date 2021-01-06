@@ -6,6 +6,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ProgrammingWithDotNetChapterOne.WebApp.Data;
+using ProgrammingWithDotNetChapterOne.WebApp.Services.Implementations;
+using ProgrammingWithDotNetChapterOne.WebApp.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,9 +27,15 @@ namespace ProgrammingWithDotNetChapterOne.WebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllers();
 
             services.AddDbContext<CalculatorContext>(p => p.UseNpgsql(Configuration.GetConnectionString("CalculatorConnection")));
+
+            services.AddScoped<ICalculatorCostService, CalculatorCostService>();
+            services.AddScoped<ICityService, CityService>();
+            services.AddScoped<IModuleService, ModuleService>();
+            services.AddScoped<ISearchHistoryService, SearchHistoryService>();
+            services.AddScoped<IShowResultService, ShowResultService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,9 +60,7 @@ namespace ProgrammingWithDotNetChapterOne.WebApp
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllers();
             });
         }
     }
