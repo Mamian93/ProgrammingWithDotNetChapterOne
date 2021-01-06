@@ -12,16 +12,13 @@ namespace ProgrammingWithDotNetChapterOne.WebApp.Services.Implementations
     public class SearchHistoryService : ISearchHistoryService
     {
         private readonly CalculatorContext context;
-        private readonly IModuleService moduleService;
         private readonly ICityService cityService;
 
         public SearchHistoryService(
                 CalculatorContext context,
-                IModuleService moduleService,
                 ICityService cityService)
         {
             this.context = context;
-            this.moduleService = moduleService;
             this.cityService = cityService;
         }
 

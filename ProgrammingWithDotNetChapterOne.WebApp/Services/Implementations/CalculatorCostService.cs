@@ -7,21 +7,15 @@ namespace ProgrammingWithDotNetChapterOne.WebApp.Services.Implementations
 {
     public class CalculatorCostService : ICalculatorCostService
     {
-        private readonly CalculatorContext context;
         private readonly ICityService cityService;
         private readonly IModuleService moduleService;
-        private readonly ISearchHistoryService searchHistoryService;
 
         public CalculatorCostService(
-                CalculatorContext context,
                 ICityService cityService,
-                IModuleService moduleService,
-                ISearchHistoryService searchHistoryService)
+                IModuleService moduleService)
         {
-            this.context = context;
             this.cityService = cityService;
             this.moduleService = moduleService;
-            this.searchHistoryService = searchHistoryService;
         }
 
         OperationResultDTO ICalculatorCostService.CalculateCost(string cityName, ModuleListDTO moduleListDTO)
