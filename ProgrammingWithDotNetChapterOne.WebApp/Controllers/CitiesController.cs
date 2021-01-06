@@ -5,6 +5,7 @@ using System.Net;
 
 namespace ProgrammingWithDotNetChapterOne.WebApp.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
     public class CitiesController : ControllerBase
     {
@@ -16,14 +17,14 @@ namespace ProgrammingWithDotNetChapterOne.WebApp.Controllers
         }
 
         [HttpGet]
-        [Route("Cities/GetCities")]
+        [Route("GetCities")]
         public IActionResult GetCities()
         {
             return Ok(cityService.GetCities().Result);
         }
 
         [HttpGet]
-        [Route("Cities/GetCityByName/{name}")]
+        [Route("GetCityByName/{name}")]
         public IActionResult GetCityByName(string name)
         {
             City city = cityService.GetCityByName(name);
@@ -35,12 +36,12 @@ namespace ProgrammingWithDotNetChapterOne.WebApp.Controllers
         }
 
         [HttpPut]
-        [Route("Cities/UpdateTransportCost")]
+        [Route("UpdateTransportCost")]
         public IActionResult UpdateTransportCost(City city)
         {
             var response = cityService.UpdateTransportCost(city.Name, city.TransportCost);
 
-            if (response.Message.Equals("Success"))
+            if (response.Message.Equals("Success")) 
             {
                 return Ok(response.Message);
             }
@@ -48,7 +49,7 @@ namespace ProgrammingWithDotNetChapterOne.WebApp.Controllers
         }
 
         [HttpPut]
-        [Route("Cities/UpdateCostOfWorkingHour")]
+        [Route("UpdateCostOfWorkingHour")]
         public IActionResult UpdateCostOfWorkingHour(City city)
         {
             var response = cityService.UpdateCostOfWorkingHour(city.Name, city.CostOfWorkingHour);
@@ -61,7 +62,7 @@ namespace ProgrammingWithDotNetChapterOne.WebApp.Controllers
         }
 
         [HttpPost]
-        [Route("Cities/AddCity")]
+        [Route("AddCity")]
         public IActionResult AddCity(City city)
         {
             if (city == null)
@@ -80,7 +81,7 @@ namespace ProgrammingWithDotNetChapterOne.WebApp.Controllers
         }
 
         [HttpDelete]
-        [Route("Cities/DeleteCity/{name}")]
+        [Route("DeleteCity/{name}")]
         public IActionResult DeleteCity(string name)
         {
             if (name == null)

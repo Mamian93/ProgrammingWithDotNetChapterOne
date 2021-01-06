@@ -4,6 +4,7 @@ using ProgrammingWithDotNetChapterOne.WebApp.Services.Interfaces;
 
 namespace ProgrammingWithDotNetChapterOne.WebApp.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
     public class ShowResultController : ControllerBase
     {
@@ -15,7 +16,7 @@ namespace ProgrammingWithDotNetChapterOne.WebApp.Controllers
         }
 
         [HttpPost]
-        [Route("ShowResult/Get")]
+        [Route("Get")]
         public IActionResult GetCost(ShowResultDTO showResultDTO)
         {
             var result = this.showResultService.PresentResult(showResultDTO.CityName, showResultDTO.ModuleListDTO);

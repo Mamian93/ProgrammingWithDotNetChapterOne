@@ -6,6 +6,7 @@ using System.Net;
 
 namespace ProgrammingWithDotNetChapterOne.WebApp.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
     public class ModulesController : ControllerBase
     {
@@ -17,14 +18,14 @@ namespace ProgrammingWithDotNetChapterOne.WebApp.Controllers
         }
 
         [HttpGet]
-        [Route("Module/GetModules")]
+        [Route("GetModules")]
         public IActionResult GetModules()
         {
             return Ok(moduleService.GetModules().Result);
         }
 
         [HttpGet]
-        [Route("Module/GetModule/{name}")]
+        [Route("GetModule/{name}")]
         public IActionResult GetModuleByName(string name)
         {
             if (name == null)
@@ -36,21 +37,21 @@ namespace ProgrammingWithDotNetChapterOne.WebApp.Controllers
         }
 
         [HttpPut]
-        [Route("Module/UpdateModule")]
+        [Route("UpdateModule")]
         public IActionResult UpdateModule(Module module)
         {
             return Ok(moduleService.UpdateModule(module).Message);
         }
 
         [HttpPost]
-        [Route("Module/AddModule")]
+        [Route("AddModule")]
         public IActionResult AddModule(Module module)
         {
             return Ok(moduleService.AddModule(module).Message);
         }
 
         [HttpDelete]
-        [Route("Module/DeleteModule/{name}")]
+        [Route("DeleteModule/{name}")]
         public IActionResult DeleteModule(string name)
         {
             return Ok(moduleService.DeleteModule(name).Message);

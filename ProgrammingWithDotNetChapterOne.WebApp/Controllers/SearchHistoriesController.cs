@@ -6,6 +6,7 @@ using System.Net;
 
 namespace ProgrammingWithDotNetChapterOne.WebApp.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
     public class SearchHistoriesController : ControllerBase
     {
@@ -17,14 +18,14 @@ namespace ProgrammingWithDotNetChapterOne.WebApp.Controllers
         }
 
         [HttpGet]
-        [Route("SearchHistories/GetSearchHistory")]
+        [Route("GetSearchHistory")]
         public IActionResult GetSearchHistory()
         {
             return Ok(searchHistoryService.GetSearchHistories().Result);
         }
 
         [HttpPost]
-        [Route("SearchHistories/AddSearchHistory")]
+        [Route("AddSearchHistory")]
         public IActionResult AddSearchHistory(SearchHistory searchHistory)
         {
             if (searchHistory == null)
